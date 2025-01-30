@@ -5,12 +5,12 @@ import pandas as pd
 st.write("""
 # Simple Stock Price App
 
-This app displays the **closing price**, **volume**, and other key metrics for the selected stock.
+This app displays the **closing price**, **volume** metrics for the selected stock.
 
 """)
 
 # User input for stock ticker symbol
-tickerSymbol = st.text_input("Enter Stock Ticker Symbol", "AMZN").strip()
+tickerSymbol = st.text_input("Enter Stock Ticker Symbol", "").strip()
 
 # User input for date range
 start_date = st.date_input("Start Date", value=pd.to_datetime("2010-05-31"))
@@ -39,23 +39,6 @@ if tickerSymbol:
             """)
             st.line_chart(tickerDf.Volume)
 
-            # Display open price
-            st.write("""
-            ## Open Price
-            """)
-            st.line_chart(tickerDf.Open)
-
-            # Display high price
-            st.write("""
-            ## High Price
-            """)
-            st.line_chart(tickerDf.High)
-
-            # Display low price
-            st.write("""
-            ## Low Price
-            """)
-            st.line_chart(tickerDf.Low)
         else:
             st.warning(f"No data available for the ticker symbol: {tickerSymbol}. Please enter a valid ticker.")
     except Exception as e:
